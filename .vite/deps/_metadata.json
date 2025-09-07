@@ -1,0 +1,133 @@
+{
+  "hash": "211851de",
+  "configHash": "35092cfd",
+  "lockfileHash": "dccfe92a",
+  "browserHash": "77feae44",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "c1aff0a6",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "deef0fe7",
+      "needsInterop": true
+    },
+    "react-redux": {
+      "src": "../../node_modules/react-redux/dist/react-redux.mjs",
+      "file": "react-redux.js",
+      "fileHash": "40d6590c",
+      "needsInterop": false
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.mjs",
+      "file": "react-router-dom.js",
+      "fileHash": "4645ce40",
+      "needsInterop": false
+    },
+    "redux-persist/integration/react": {
+      "src": "../../node_modules/redux-persist/es/integration/react.js",
+      "file": "redux-persist_integration_react.js",
+      "fileHash": "f22d20fd",
+      "needsInterop": false
+    },
+    "react-modal": {
+      "src": "../../node_modules/react-modal/lib/index.js",
+      "file": "react-modal.js",
+      "fileHash": "16c83b44",
+      "needsInterop": true
+    },
+    "@reduxjs/toolkit": {
+      "src": "../../node_modules/@reduxjs/toolkit/dist/redux-toolkit.modern.mjs",
+      "file": "@reduxjs_toolkit.js",
+      "fileHash": "517ed986",
+      "needsInterop": false
+    },
+    "redux-persist": {
+      "src": "../../node_modules/redux-persist/es/index.js",
+      "file": "redux-persist.js",
+      "fileHash": "b855ce83",
+      "needsInterop": false
+    },
+    "redux-persist/es/persistReducer": {
+      "src": "../../node_modules/redux-persist/es/persistReducer.js",
+      "file": "redux-persist_es_persistReducer.js",
+      "fileHash": "93b34a7d",
+      "needsInterop": false
+    },
+    "redux-persist/es/persistStore": {
+      "src": "../../node_modules/redux-persist/es/persistStore.js",
+      "file": "redux-persist_es_persistStore.js",
+      "fileHash": "e64fd925",
+      "needsInterop": false
+    },
+    "redux-persist/lib/storage": {
+      "src": "../../node_modules/redux-persist/lib/storage/index.js",
+      "file": "redux-persist_lib_storage.js",
+      "fileHash": "35727580",
+      "needsInterop": true
+    },
+    "react-hot-toast": {
+      "src": "../../node_modules/react-hot-toast/dist/index.mjs",
+      "file": "react-hot-toast.js",
+      "fileHash": "b2da83bf",
+      "needsInterop": false
+    },
+    "axios": {
+      "src": "../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "4aeda216",
+      "needsInterop": false
+    },
+    "react-spinners": {
+      "src": "../../node_modules/react-spinners/esm/index.js",
+      "file": "react-spinners.js",
+      "fileHash": "1515501f",
+      "needsInterop": false
+    },
+    "react-router-hash-link": {
+      "src": "../../node_modules/react-router-hash-link/dist/react-router-hash-link.esm.js",
+      "file": "react-router-hash-link.js",
+      "fileHash": "995a098b",
+      "needsInterop": false
+    },
+    "react-responsive": {
+      "src": "../../node_modules/react-responsive/dist/esm/index.js",
+      "file": "react-responsive.js",
+      "fileHash": "2f8046d8",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-HD24AVLD": {
+      "file": "chunk-HD24AVLD.js"
+    },
+    "chunk-RZVJAJWH": {
+      "file": "chunk-RZVJAJWH.js"
+    },
+    "chunk-F6675Q4O": {
+      "file": "chunk-F6675Q4O.js"
+    },
+    "chunk-K4NLKXWU": {
+      "file": "chunk-K4NLKXWU.js"
+    },
+    "chunk-SYYCCCU4": {
+      "file": "chunk-SYYCCCU4.js"
+    },
+    "chunk-OTY75I5Q": {
+      "file": "chunk-OTY75I5Q.js"
+    },
+    "chunk-TQWTMSAS": {
+      "file": "chunk-TQWTMSAS.js"
+    },
+    "chunk-MBT3EELI": {
+      "file": "chunk-MBT3EELI.js"
+    },
+    "chunk-V4OQ3NZ2": {
+      "file": "chunk-V4OQ3NZ2.js"
+    }
+  }
+}

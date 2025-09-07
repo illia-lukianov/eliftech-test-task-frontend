@@ -1,0 +1,75 @@
+:root {
+  background-color: var(--background-color);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+}
+
+body {
+  font-family: var(--font-family);
+  font-weight: 400;
+  color: var(--black);
+  background-color: var(--background);
+}
+
+body.ReactModal__Body--open {
+  overflow: hidden;
+}
+
+section {
+  padding: 48px 0;
+}
+
+main {
+  flex-grow: 1;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+input,
+textarea {
+  border: 1px solid var(--light-gray);
+  border-radius: 8px;
+  background: var(--white);
+  padding: 8px;
+}
+
+input {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+
+button {
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+
+textarea {
+  resize: none;
+}
