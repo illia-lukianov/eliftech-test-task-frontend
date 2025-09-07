@@ -1,2 +1,0 @@
-# eliftech-frontend
-eliftech-frontend
