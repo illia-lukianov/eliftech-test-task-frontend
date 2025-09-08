@@ -2,8 +2,7 @@ import axios from 'axios';
 import { refreshUser } from '../redux/auth/operations';
 
 const api = axios.create({
-  // baseURL: 'https://eliftech-test-task-backend-m2aj.onrender.com',
-  baseURL: 'http://localhost:8080',
+  baseURL: 'https://eliftech-test-task-backend-m2aj.onrender.com',
   withCredentials: true,
 });
 
