@@ -12,6 +12,14 @@ export default function ProfileNavigation() {
       >
         Saved Flowers
       </NavLink>
+      <NavLink
+        to="/profile/orders"
+        className={({ isActive }) =>
+          isActive ? `${styles.link} ${styles.active}` : styles.link
+        }
+      >
+        Orders History
+      </NavLink>
     </nav>
   );
 }

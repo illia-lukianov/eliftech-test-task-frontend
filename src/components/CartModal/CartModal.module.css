@@ -1,0 +1,152 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  gap: 24px;
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  max-width: 700px;
+  width: 90%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  font-family: 'Arial', sans-serif;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.quantityField {
+  display: flex;
+  flex-direction: column;
+}
+
+.imageWrapper {
+  flex: 0 0 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.image:hover {
+  transform: scale(1.05); 
+}
+
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: #333;
+}
+
+.description {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.quantity {
+  display: flex;
+  margin: 0 auto;
+  align-items: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+  flex-direction: column;
+}
+
+.quantity input {
+  padding: 6px 10px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.totalPrice {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #222;
+  margin-top: 8px;
+}
+
+.error {
+  display: flex;
+  font-size: 0.85rem;
+  color: #d32f2f;
+  margin-top: 4px;
+}
+
+.addBtn {
+  margin-top: 16px;
+  padding: 10px 18px;
+  background-color: #6a4eff;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.addBtn:hover {
+  background-color: #5740c0;
+  transform: translateY(-2px); /* 👈 легкий підйом */
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .input {
+    display: flex;
+  }
+
+  .imageWrapper {
+    flex: none;
+  }
+
+  .image {
+    width: 200px;
+    height: 200px;
+  }
+
+  .info {
+    align-items: center;
+    text-align: center;
+  }
+
+  .addBtn {
+    width: 100%;
+    padding: 14px;
+    font-size: 1.1rem;
+  }
+}

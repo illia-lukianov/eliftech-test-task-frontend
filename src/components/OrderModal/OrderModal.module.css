@@ -1,0 +1,69 @@
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 12px;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+}
+
+.total, .date {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding: 12px;
+  border-bottom: 1px solid #e0e0e0;
+  justify-content: center;
+}
+
+.image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.name {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.desc {
+  font-size: 16px;
+  color: #555;
+}
+
+.price {
+  font-size: 16px;
+  font-weight: 500;
+  color: #222;
+}
+
+.season {
+  font-size: 16px;
+  color: #888;
+}

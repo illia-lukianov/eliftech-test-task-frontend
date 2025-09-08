@@ -4,6 +4,7 @@ import FlowersList from "../../components/FlowersList/FlowersList.jsx";
 import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn.jsx";
 import ProfileNavigation from "../../components/ProfileNavigation/ProfileNavigation.jsx";
 import styles from "./ProfilePage.module.css";
+import OrdersList from "../../components/OrdersList/OrdersList.jsx";
 
 export default function ProfilePage() {
   const { recipeType } = useParams();
@@ -15,7 +16,7 @@ export default function ProfilePage() {
         <h2 className={styles.title}>My profile</h2>
         <ProfileNavigation />
         <Filters flowerType={type} />
-        <FlowersList flowerType={type} />
+        {type === "orders" ? <OrdersList /> : <FlowersList flowerType={type} />}
         <LoadMoreBtn />
       </div>
     </section>

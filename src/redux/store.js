@@ -6,6 +6,8 @@ import filtersReducer from "./filters/slice";
 import flowerDetailsReducer from "./flowerDetails/slice";
 import flowersReducer from "./flowers/slice";
 import userReducer from "./user/slice";
+import ordersReducer from "./orders/slice";
+import cartReducer from "./cart/slice";
 
 import {
   FLUSH,
@@ -26,12 +28,21 @@ const authPersistConfig = {
   whitelist: ["isLoggedIn"],
 };
 
+const cartPersistConfig = {
+  key: "cart",
+  storage,
+  whitelist: ["items"],
+};
+
 const persistAuthReducer = persistReducer(authPersistConfig, authReducer);
+const persistCartReducer = persistReducer(cartPersistConfig, cartReducer);
 
 export const store = configureStore({
   reducer: {
     auth: persistAuthReducer,
     areas: areasReducer,
+    cart: persistCartReducer,
+    orders: ordersReducer,
     categories: categoriesReducer,
     filters: filtersReducer,
     flowerDetails: flowerDetailsReducer,

@@ -1,30 +1,31 @@
-import { lazy, Suspense, useEffect } from 'react';
-import Layout from '../components/Layout/Layout';
-import { Toaster } from 'react-hot-toast';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import PrivateRoute from '../components/PrivateRoute';
-import RestrictedRoute from '../components/RestrictedRoute';
-import ConfirmUser from '../components/ConfirmUser/ConfirmUser';
-import GoogleRedirect from '../components/GoogleRedirect/GoogleRedirect';
-import { useDispatch } from 'react-redux';
-import { refreshUser } from '../redux/auth/operations';
+import { lazy, Suspense, useEffect } from "react";
+import { Toaster } from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { Navigate, Route, Routes } from "react-router-dom";
+import ConfirmUser from "../components/ConfirmUser/ConfirmUser";
+import GoogleRedirect from "../components/GoogleRedirect/GoogleRedirect";
+import Layout from "../components/Layout/Layout";
+import PrivateRoute from "../components/PrivateRoute";
+import RestrictedRoute from "../components/RestrictedRoute";
+import { refreshUser } from "../redux/auth/operations";
 
-const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
+const MainPage = lazy(() => import("../pages/MainPage/MainPage"));
+const CartPage = lazy(() => import("../pages/CartPage/CartPage"));
 const RecipeViewPage = lazy(() =>
-  import('../pages/RecipeViewPage/RecipeViewPage')
+  import("../pages/RecipeViewPage/FlowerViewPage")
 );
-const ProfilePage = lazy(() => import('../pages/ProfilePage/ProfilePage'));
-const AuthPage = lazy(() => import('../pages/AuthPage/AuthPage'));
+const ProfilePage = lazy(() => import("../pages/ProfilePage/ProfilePage"));
+const AuthPage = lazy(() => import("../pages/AuthPage/AuthPage"));
 
-const LoginForm = lazy(() => import('../components/LoginForm/LoginForm'));
+const LoginForm = lazy(() => import("../components/LoginForm/LoginForm"));
 const RegistrationForm = lazy(() =>
-  import('../components/RegistrationForm/RegistrationForm')
+  import("../components/RegistrationForm/RegistrationForm")
 );
 const RequestResetForm = lazy(() =>
-  import('../components/RequestResetForm/RequestResetForm')
+  import("../components/RequestResetForm/RequestResetForm")
 );
 const ResetPasswordForm = lazy(() =>
-  import('../components/ResetPasswordForm/ResetPasswordForm')
+  import("../components/ResetPasswordForm/ResetPasswordForm")
 );
 
 function App() {
@@ -38,12 +39,8 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route
-            path="/profile"
-            element={
-              <PrivateRoute
-                component={<Navigate to="/profile/own" replace />}
-              />
-            }
+            path="/cart"
+            element={<PrivateRoute component={<CartPage />} />}
           />
           <Route path="/flowers/:id" element={<RecipeViewPage />} />
           <Route

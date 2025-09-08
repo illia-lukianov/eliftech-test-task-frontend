@@ -1,11 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Loader from "../../components/Loader/Loader";
-import NotFound from "../../components/NotFound/NotFound";
 import FlowerDetails from "../../components/FlowerDetails/FlowerDetails.jsx";
+import Loader from "../../components/Loader/Loader.jsx";
+import NotFound from "../../components/NotFound/NotFound.jsx";
 import { getFlowerDetails } from "../../redux/flowerDetails/operations.js";
-import { selectFlowerDetails, selectFlowerDetailsError, selectFlowerDetailsIsLoading } from "../../redux/flowerDetails/selectors.js";
+import {
+  selectFlowerDetails,
+  selectFlowerDetailsError,
+  selectFlowerDetailsIsLoading,
+} from "../../redux/flowerDetails/selectors.js";
 
 export default function RecipeViewPage() {
   const { id } = useParams();

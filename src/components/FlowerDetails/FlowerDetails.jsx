@@ -10,6 +10,7 @@ import AuthenticateModal from "../AuthenticateModal/AuthenticateModal";
 import ErrorToastMessage from "../ErrorToastMessage/ErrorToastMessage";
 import FullScreenLoader from "../FullScreenLoader/FullScreenLoader";
 import css from "./FlowerDetails.module.css";
+import CartModal from "../CartModal/CartModal";
 
 export default function FlowerDetails({ flower }) {
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -28,6 +29,23 @@ export default function FlowerDetails({ flower }) {
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const openAuthModal = useCallback(() => setAuthModalOpen(true), []);
   const closeAuthModal = useCallback(() => setAuthModalOpen(false), []);
+  const [isLoadingBuyBtn, setIsLoadingBuyBtn] = useState(false);
+  const [isCartModalOpen, setIsCartModalOpen] = useState(false);
+  const [activeFlower, setActiveFlower] = useState(null);
+
+  const handleCartModalOpen = async () => {
+    if (isCartModalOpen) return;
+    setIsLoadingBuyBtn(true);
+
+    try {
+      setActiveFlower(flower);
+      setIsCartModalOpen(true);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoadingBuyBtn(false);
+    }
+  };
 
   const handleBookmark = async () => {
     if (!flower._id) return;
@@ -141,6 +159,16 @@ export default function FlowerDetails({ flower }) {
                   <use href="/icons.svg#icon-save-to-list"></use>
                 </svg>
               </button>
+              <button
+                type="button"
+                disabled={isLoadingBuyBtn}
+                className={`${css.button} brown-btn`}
+                onClick={() => {
+                  !isLoggedIn ? openAuthModal() : handleCartModalOpen();
+                }}
+              >
+                Add to cart
+              </button>
             </div>
             <ul className={css.contentList}>
               <li>
@@ -155,6 +183,11 @@ export default function FlowerDetails({ flower }) {
           </div>
         </div>
       </section>
+      <CartModal
+        cardInfo={activeFlower}
+        isOpen={isCartModalOpen}
+        onClose={() => setIsCartModalOpen(false)}
+      />
       <AuthenticateModal
         isOpen={authModalOpen}
         onClose={() => closeAuthModal()}

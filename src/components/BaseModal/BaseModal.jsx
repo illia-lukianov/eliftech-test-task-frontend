@@ -1,13 +1,14 @@
 import ReactModal from 'react-modal';
 import css from './BaseModal.module.css';
+import clsx from 'clsx';
 
-export default function BaseModal({ isOpen, onClose, children }) {
+export default function BaseModal({ isOpen, onClose, children, type }) {
   return (
     <ReactModal
       isOpen={isOpen}
       onRequestClose={onClose}
       className={{
-        base: css.modal,
+        base: clsx(css.modal, type === 'cart' && css.cartModal),
         afterOpen: css['modal--after-open'],
         beforeClose: css['modal--before-close'],
       }}
