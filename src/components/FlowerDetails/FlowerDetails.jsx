@@ -159,7 +159,7 @@ export default function FlowerDetails({ flower }) {
                   <use href="/icons.svg#icon-save-to-list"></use>
                 </svg>
               </button>
-              <button
+              {isLoggedIn && <button
                 type="button"
                 disabled={isLoadingBuyBtn}
                 className={`${css.button} brown-btn`}
@@ -168,7 +168,7 @@ export default function FlowerDetails({ flower }) {
                 }}
               >
                 Add to cart
-              </button>
+              </button>}
             </div>
             <ul className={css.contentList}>
               <li>
