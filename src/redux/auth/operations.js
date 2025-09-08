@@ -87,7 +87,7 @@ export const getOauthGoogleUrl = wrapAsyncThunk(
 );
 
 export const logInWithGoogle = wrapAsyncThunk(
-  'auth/google-log-iIn',
+  'auth/google-log-In',
   async code => {
     const response = await api.post('/auth/confirm-oauth', code, {
       skipRefresh: true,
