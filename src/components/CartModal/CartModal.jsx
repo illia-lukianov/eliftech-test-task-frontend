@@ -20,7 +20,7 @@ export default function CartModal({cardInfo, isOpen, onClose}) {
       {cardInfo !== null && (
         <div className={styles.container}>
           <div className={styles.imageWrapper}>
-            <img src={"thumb"} alt={cardInfo.name} className={styles.image} />
+            <img src={cardInfo.thumb} alt={cardInfo.name} className={styles.image} />
           </div>
           <div className={styles.info}>
             <h2 className={styles.title}>{cardInfo.name}</h2>
