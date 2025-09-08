@@ -5,6 +5,38 @@ import api, {
 import { wrapAsyncThunk } from '../../services/wrapAsyncThunk';
 import { selectIsLoggedIn } from './selectors';
 
+async function getUserLocation() {
+  if (!navigator.geolocation) {
+    return null;
+  }
+
+  return new Promise(resolve => {
+    navigator.geolocation.getCurrentPosition(
+      pos => {
+        resolve({
+          latitude: pos.coords.latitude,
+          longitude: pos.coords.longitude,
+        });
+      },
+      () => {
+        resolve(null);
+      },
+      { timeout: 3000 }
+    );
+  });
+}
+
+function createUserLocationData(userData, location) {
+  if (!location) {
+    return userData;
+  }
+
+  return {
+    ...userData,
+    location,
+  };
+}
+
 export const registerUser = wrapAsyncThunk('auth/register', async user => {
   const response = await api.post('/auth/register', user, {
     skipRefresh: true,
@@ -89,7 +121,8 @@ export const getOauthGoogleUrl = wrapAsyncThunk(
 export const logInWithGoogle = wrapAsyncThunk(
   'auth/google-log-In',
   async code => {
-    const response = await api.post('/auth/confirm-oauth', code, {
+    const reqData = createUserLocationData({ code }, await getUserLocation());
+    const response = await api.post('/auth/confirm-oauth', reqData, {
       skipRefresh: true,
     });
 
