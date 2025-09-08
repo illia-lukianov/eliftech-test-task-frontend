@@ -4,7 +4,10 @@ import FlowerCard from "../FlowerCard/FlowerCard.jsx";
 import Pagination from "../Pagination/Pagination.jsx";
 import styles from "./FlowersList.module.css";
 
-import { getAllFlowers, getFavoriteFlowers } from "../../redux/flowers/operations.js";
+import {
+  getAllFlowers,
+  getFavoriteFlowers,
+} from "../../redux/flowers/operations.js";
 
 import { useDebounce } from "use-debounce";
 import { ERROR_MESSAGES } from "../../constants/index.js";
@@ -15,7 +18,14 @@ import {
   selectSortBy,
   selectSortOrder,
 } from "../../redux/filters/selectors.js";
-import { selectAllFlowersItems, selectAllFlowersTotalPages, selectFavoriteFlowersItems, selectFavoriteFlowersTotalPages, selectFlowersListError, selectFlowersListIsLoading } from "../../redux/flowers/selectors.js";
+import {
+  selectAllFlowersItems,
+  selectAllFlowersTotalPages,
+  selectFavoriteFlowersItems,
+  selectFavoriteFlowersTotalPages,
+  selectFlowersListError,
+  selectFlowersListIsLoading,
+} from "../../redux/flowers/selectors.js";
 import AuthenticateModal from "../AuthenticateModal/AuthenticateModal.jsx";
 import ErrorToastMessage from "../ErrorToastMessage/ErrorToastMessage.jsx";
 import Loader from "../Loader/Loader.jsx";
@@ -143,9 +153,7 @@ export default function FlowersList({ flowerType }) {
         content="To save this flower, you need to authorize first"
       />
       {error && (
-        <ErrorToastMessage>
-          {errorMessages[error.status]}
-        </ErrorToastMessage>
+        <ErrorToastMessage>{errorMessages[error.status]}</ErrorToastMessage>
       )}
     </>
   );

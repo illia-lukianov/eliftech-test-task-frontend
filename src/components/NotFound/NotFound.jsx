@@ -1,9 +1,9 @@
 import { useMediaQuery } from 'react-responsive';
 import css from './NotFound.module.css';
-import Image from '../../assets/img/not-found/plate-mob.webp';
-import Image2 from '../../assets/img/not-found/plate-mob@2x.webp';
-import ImageTablet from '../../assets/img/not-found/plate-tab.webp';
-import ImageTablet2 from '../../assets/img/not-found/plate-tab@2x.webp';
+import Image from '../../assets/img/not-found/not-found-img-mob.png';
+import Image2 from '../../assets/img/not-found/not-found-img-mob@2x.png';
+import ImageTablet from '../../assets/img/not-found/not-found-img-tab.png';
+import ImageTablet2 from '../../assets/img/not-found/not-found-img-tab@2x.png';
 import { Link } from 'react-router-dom';
 
 export default function NotFound() {
@@ -18,7 +18,7 @@ export default function NotFound() {
             className={css.img}
             src={Image}
             srcSet={`${Image} 1x, ${Image2} 2x`}
-            alt="Recipe was not found"
+            alt="Flower was not found"
           />
         )}
 
@@ -27,16 +27,15 @@ export default function NotFound() {
             className={css.img}
             src={ImageTablet}
             srcSet={`${ImageTablet} 1x, ${ImageTablet2} 2x`}
-            alt="Recipe was not found"
+            alt="Flower was not found"
           />
         )}
         <h1 className={css.h1}>404</h1>
-        <p className={css.h3}>Recipe not found</p>
+        <p className={css.h3}>Flower not found</p>
         <Link
           to="/"
           type="button"
           className={`brown-btn ${css.button}`}
-          // onClick={() => navigate('/')}
         >
           <svg className={css.icon} width={24} height={24}>
             <use href="/icons.svg#icon-left-short-arrow"></use>

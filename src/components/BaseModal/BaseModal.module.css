@@ -67,6 +67,13 @@
     max-width: 420px;
     padding: 56px 32px 32px;
   }
+
+  @media (min-width: 768px) {
+  .cartModal {
+    max-width: 768px;
+  }
+}
+
   .closeBtn {
     right: 32px;
   }

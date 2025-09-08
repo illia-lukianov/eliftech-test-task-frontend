@@ -19,6 +19,7 @@ import MobileMenu from './MobileMenu/MobileMenu';
 import { useMediaQuery } from 'react-responsive';
 import { ERROR_MESSAGES } from '../../constants';
 import ErrorToastMessage from '../ErrorToastMessage/ErrorToastMessage';
+import { clearCart } from '../../redux/cart/slice';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -60,7 +61,8 @@ export default function Header() {
 
   const handleLogout = useCallback(async () => {
     try {
-      await dispatch(logOutUser());
+      dispatch(clearCart());
+      dispatch(logOutUser());
     } finally {
       navigate('/');
       setMenuOpen(false);

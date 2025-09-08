@@ -27,6 +27,7 @@ import {
   selectFavoriteFlowersTotalItems,
 } from "../../redux/flowers/selectors";
 import styles from "./Filters.module.css";
+import { selectAllOrdersTotalItems } from "../../redux/orders/selectors";
 
 export default function Filters({ flowerType = "all" }) {
   const dispatch = useDispatch();
@@ -49,6 +50,8 @@ export default function Filters({ flowerType = "all" }) {
         return selectAllFlowersTotalItems(state);
       case "favorites":
         return selectFavoriteFlowersTotalItems(state);
+      case "orders":
+        return selectAllOrdersTotalItems(state);
       default:
         return 0;
     }
@@ -96,7 +99,6 @@ export default function Filters({ flowerType = "all" }) {
   const sortOptions = [
     { value: ["title", "asc"], label: "Title (A → Z)" },
     { value: ["title", "desc"], label: "Title (Z → A)" },
-    // { value: ["time", "asc"], label: "Time (Low → High)" },
     { value: ["popularity", "desc"], label: "Popularity (High → Low)" },
     { value: ["createdAt", "desc"], label: "Created At (Newest First)" },
     { value: ["createdAt", "asc"], label: "Created At (Oldest First)" },
@@ -155,102 +157,106 @@ export default function Filters({ flowerType = "all" }) {
         <h3 className="visually-hidden">Filters</h3>
 
         <div className={styles.filtersContainer}>
-          <p className={styles.recipeCounter}>{`${totalItems} flowers`}</p>
+          <p className={styles.recipeCounter}>{`${totalItems} ${
+            flowerType !== "orders" ? "flowers" : "orders"
+          }`}</p>
 
-          <div className={styles.filtersWrapper}>
-            <div className={styles.desktopFilters}>
-              <div className={styles.rightSide}>
-                <button onClick={handleReset} className={styles.reset}>
-                  Reset filters
-                </button>
+          {flowerType !== "orders" && (
+            <div className={styles.filtersWrapper}>
+              <div className={styles.desktopFilters}>
+                <div className={styles.rightSide}>
+                  <button onClick={handleReset} className={styles.reset}>
+                    Reset filters
+                  </button>
 
-                {/* Categories */}
-                <Select
-                  isMulti
-                  isClearable={false}
-                  isLoading={isLoadingCategories}
-                  options={categories.map((c) => ({
-                    value: c,
-                    label: c,
-                  }))}
-                  value={selectedCategories.map((c) => ({
-                    value: c,
-                    label: c,
-                  }))}
-                  onChange={handleCategoriesChange}
-                  placeholder="Category"
-                  classNamePrefix="customSelect"
-                  styles={customStylesDesc}
-                />
+                  {/* Categories */}
+                  <Select
+                    isMulti
+                    isClearable={false}
+                    isLoading={isLoadingCategories}
+                    options={categories.map((c) => ({
+                      value: c,
+                      label: c,
+                    }))}
+                    value={selectedCategories.map((c) => ({
+                      value: c,
+                      label: c,
+                    }))}
+                    onChange={handleCategoriesChange}
+                    placeholder="Category"
+                    classNamePrefix="customSelect"
+                    styles={customStylesDesc}
+                  />
 
-                <Select
-                  isMulti
-                  isClearable={false}
-                  isLoading={isLoadingAreas}
-                  options={areas.map((a) => ({
-                    value: a._id,
-                    label: a.name,
-                  }))}
-                  value={selectedAreas.map((id) => ({
-                    value: id,
-                    label: areas.find((a) => a._id === id)?.name || id,
-                  }))}
-                  onChange={handleAreasChange}
-                  placeholder="Area"
-                  classNamePrefix="customSelect"
-                  styles={customStylesDesc}
-                />
+                  <Select
+                    isMulti
+                    isClearable={false}
+                    isLoading={isLoadingAreas}
+                    options={areas.map((a) => ({
+                      value: a._id,
+                      label: a.name,
+                    }))}
+                    value={selectedAreas.map((id) => ({
+                      value: id,
+                      label: areas.find((a) => a._id === id)?.name || id,
+                    }))}
+                    onChange={handleAreasChange}
+                    placeholder="Area"
+                    classNamePrefix="customSelect"
+                    styles={customStylesDesc}
+                  />
 
-                {/* Sort */}
-                <Select
-                  isClearable
-                  options={sortOptions}
-                  value={
-                    sortBy && sortOrder
-                      ? sortOptions.find(
-                          (o) =>
-                            o.value[0] === sortBy && o.value[1] === sortOrder
-                        )
-                      : null
-                  }
-                  onChange={(option) => {
-                    if (!option) {
-                      dispatch(clearSortParams());
-                      return;
+                  {/* Sort */}
+                  <Select
+                    isClearable
+                    options={sortOptions}
+                    value={
+                      sortBy && sortOrder
+                        ? sortOptions.find(
+                            (o) =>
+                              o.value[0] === sortBy && o.value[1] === sortOrder
+                          )
+                        : null
                     }
-                    const [field, order] = option.value;
-                    dispatch(
-                      changeSortParams({
-                        sortBy: field,
-                        sortOrder: order,
-                      })
-                    );
-                  }}
-                  placeholder="Sort by"
-                  classNamePrefix="customSelect"
-                  styles={{
-                    ...customStylesDesc,
-                    control: (base, state) => ({
-                      ...customStylesDesc.control(base, state),
-                      width: "250px",
-                    }),
-                  }}
-                />
+                    onChange={(option) => {
+                      if (!option) {
+                        dispatch(clearSortParams());
+                        return;
+                      }
+                      const [field, order] = option.value;
+                      dispatch(
+                        changeSortParams({
+                          sortBy: field,
+                          sortOrder: order,
+                        })
+                      );
+                    }}
+                    placeholder="Sort by"
+                    classNamePrefix="customSelect"
+                    styles={{
+                      ...customStylesDesc,
+                      control: (base, state) => ({
+                        ...customStylesDesc.control(base, state),
+                        width: "250px",
+                      }),
+                    }}
+                  />
+                </div>
               </div>
+
+              <button
+                className={styles.filtersToggle}
+                onClick={() => setIsOpen(true)}
+              >
+                Filters
+                <svg className={styles.icon} width="16" height="16">
+                  <use href="/icons.svg#icon-filter"></use>
+                </svg>
+              </button>
             </div>
+          )}
 
-            <button
-              className={styles.filtersToggle}
-              onClick={() => setIsOpen(true)}
-            >
-              Filters
-              <svg className={styles.icon} width="16" height="16">
-                <use href="/icons.svg#icon-filter"></use>
-              </svg>
-            </button>
-          </div>
-
-          {
+          {isOpen && (
             <div
               className={`${styles.modalOverlay} ${
                 isOpen ? styles.isOpen : ""
@@ -341,7 +347,7 @@ export default function Filters({ flowerType = "all" }) {
                 </button>
               </div>
             </div>
-          }
+          )}
         </div>
       </section>
     </>

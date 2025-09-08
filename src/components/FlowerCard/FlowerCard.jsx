@@ -1,30 +1,37 @@
 import { useState } from "react";
+import { FaCartArrowDown } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 import { Link, useNavigate } from "react-router-dom";
 import { ERROR_MESSAGES } from "../../constants";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
-import { addFlowerToFavorite, deleteFlowerFromFavorite } from "../../redux/flowers/operations";
+import {
+  addFlowerToFavorite,
+  deleteFlowerFromFavorite,
+} from "../../redux/flowers/operations";
 import { selectFlowersOperationError } from "../../redux/flowers/selectors";
 import { selectUserProfile } from "../../redux/user/selectors";
+import CartModal from "../CartModal/CartModal";
 import ConfirmDeleteModal from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import ErrorToastMessage from "../ErrorToastMessage/ErrorToastMessage";
 import SmallLoader from "../SmallLoader/SmallLoader";
 import styles from "./FlowerCard.module.css";
 
-export default function RecipeCard({ flower, flowerType, openModal }) {
+export default function FlowerCard({ flower, flowerType, openModal }) {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const error = useSelector(selectFlowersOperationError);
   const [isLoadingBtn, setLoadingBtn] = useState(false);
+  const [isLoadingBuyBtn, setIsLoadingBuyBtn] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1439 });
   const navigate = useNavigate();
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
-
+  const [activeFlower, setActiveFlower] = useState(null);
+  const [isCartModalOpen, setIsCartModalOpen] = useState(false);
   const favItems = useSelector(selectUserProfile)?.favourites;
 
-  const { _id, name, bloomSeason, description, category, thumb } = flower || {};
+  const { _id, name, bloomSeason, description, price, thumb } = flower || {};
   const imgSrc = thumb;
 
   const type = (flowerType || "").trim().toLowerCase();
@@ -55,6 +62,20 @@ export default function RecipeCard({ flower, flowerType, openModal }) {
       console.error(err);
     } finally {
       setLoadingBtn(false);
+    }
+  };
+
+  const handleCartModalOpen = async () => {
+    if (isCartModalOpen) return;
+    setIsLoadingBuyBtn(true);
+
+    try {
+      setActiveFlower(flower);
+      setIsCartModalOpen(true);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoadingBuyBtn(false);
     }
   };
 
@@ -100,7 +121,7 @@ export default function RecipeCard({ flower, flowerType, openModal }) {
 
         <div className={styles.header}>
           <h3 className={styles.title}>{name}</h3>
-          <div className={styles.timeBadge} title="Cooking time">
+          <div className={styles.timeBadge} title="Blooming time">
             <svg className={styles.iconClock}>
               <use href={"/icons.svg#icon-clock"} />
             </svg>
@@ -110,7 +131,7 @@ export default function RecipeCard({ flower, flowerType, openModal }) {
 
         <div className={styles.descriptionContainer}>
           <p className={styles.descriptionText}>{description}</p>
-          <p>{`Category: ${category}`}</p>
+          <p>{`Price: ${price} grn`}</p>
         </div>
 
         <div className={styles.btnContainer}>
@@ -178,13 +199,36 @@ export default function RecipeCard({ flower, flowerType, openModal }) {
               </button>
             </>
           )}
+          {isLoggedIn && !isFavorites && (
+            <button
+              type="button"
+              disabled={isLoadingBtn}
+              onClick={(e) => {
+                if (!isLoggedIn) {
+                  openModal();
+                } else {
+                  handleCartModalOpen(e);
+                }
+              }}
+              className={`${styles.bookmarkBtn} ${
+                isAll ? "brown-btn" : "dark-outline-btn"
+              }`}
+            >
+              {isLoadingBuyBtn ? <SmallLoader /> : <FaCartArrowDown />}
+            </button>
+          )}
         </div>
       </div>
+      <CartModal
+        cardInfo={activeFlower}
+        isOpen={isCartModalOpen}
+        onClose={() => setIsCartModalOpen(false)}
+      />
       <ConfirmDeleteModal
         isOpen={isDeleteModalOpen}
         onClose={() => setDeleteModalOpen(false)}
         onConfirm={() => {
-            handleRemoveFromFavourites();
+          handleRemoveFromFavourites();
         }}
       />
       {error && (
