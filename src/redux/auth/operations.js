@@ -99,8 +99,8 @@ export const resetPassword = wrapAsyncThunk(
 );
 
 export const confirmUser = wrapAsyncThunk('auth/confirmUser', async token => {
-
-  const response = await api.post('/auth/confirm-email', token, {
+  const reqData = createUserLocationData({ token }, await getUserLocation());
+  const response = await api.post('/auth/confirm-email', reqData, {
     skipRefresh: true,
   });
 
